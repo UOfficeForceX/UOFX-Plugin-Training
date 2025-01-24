@@ -1,0 +1,43 @@
+<div>
+  <uofx-form-field-name [name]="name" [required]="required">
+  </uofx-form-field-name>
+</div>
+<div class="fw-control">
+  <table>
+    <tr>
+      <th><span>帳號</span></th>
+      <td colspan="3">
+        <span></span>
+      </td>
+    </tr>
+    <tr *ngIf="exProps?.isShowEmpNo">
+      <th><span uofx-required>員工編號</span></th>
+      <td colspan="3">
+          <input type="text" pInputText  />
+          <span class="margin-left">合法員編為:A001、A002</span>
+      </td>
+    </tr>
+    <tr>
+      <th><span uofx-required>行動電話</span></th>
+      <td>
+        <input type="text" pInputText [disabled]="!editable" />
+      </td>
+      <th><span uofx-required>申請日期</span></th>
+      <td>
+        <uofx-date-picker></uofx-date-picker>
+      </td>
+    </tr>
+    <tr>
+      <th><span uofx-required>職務代理人</span></th>
+      <td colspan="3">
+        <uofx-user-select></uofx-user-select>
+      </td>
+    </tr>
+    <tr>
+      <th><span>申請次數</span></th>
+      <td colspan="3">
+        -
+      </td>
+    </tr>
+  </table>
+</div>
