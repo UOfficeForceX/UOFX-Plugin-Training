@@ -1,0 +1,68 @@
+{
+  "$schema": "../../../node_modules/@uofx/plugin/schema/routes.schema.json",
+  "admin": {
+    "menu": {
+      "name": "EDE 外掛模組",
+      "icon": "assets/icons/pets.png",
+      "children": [
+        {
+          "funcId": "CONTAINER",
+          "name": "內容置中",
+          "icon": "assets/icons/home.png",
+          "path": "container"
+        },
+        {
+          "funcId": "SUBLAYOUT",
+          "name": "有TAB的頁面",
+          "icon": "assets/icons/settings.png",
+          "path": "sub"
+        },
+        {
+          "funcId": "SUBLAYOUT_SIDER",
+          "name": "有側邊欄的頁面",
+          "icon": "assets/icons/security.png",
+          "path": "sub/sider"
+        },
+        {
+          "funcId": "CUSTOMERCOMPLETE",
+          "name": "客戶管理(完成品)",
+          "icon": "assets/icons/rocket_launch.png",
+          "path": "customer-complete"
+        }
+      ]
+    }
+  },
+  "user": {
+    "menu": {
+      "name": "EDE 外掛模組",
+      "icon": "assets/icons/pets.png",
+      "children": [
+        {
+          "funcId": "USERFULL",
+          "name": "滿版的頁面",
+          "icon": "assets/icons/house.png",
+          "path": "full"
+        },
+        {
+          "funcId": "USERTAB",
+          "name": "有TAB的頁面",
+          "icon": "assets/icons/rocket_launch.png",
+          "path": "tab"
+        }
+      ]
+    }
+  },
+  "app": {
+    "menu": {
+      "name": "EDE 外掛模組",
+      "children": [
+        {
+          "funcId": "APP_LOBBY",
+          "name": "大廳",
+          "icon": "assets/icons/house.png",
+          "path": "lobby"
+        }
+      ]
+    }
+  }
+}
