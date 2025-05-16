@@ -1,0 +1,54 @@
+<div class="uofx-container fixed-1100">
+  <div class="row">
+    <!-- 麵包屑-->
+    <div class="padding-vertical-2x col-12">
+      <uofx-breadcrumb [items]="breadCrumbItems"> </uofx-breadcrumb>
+    </div>
+  </div>
+
+  <!-- 模擬字軌維護表頭  -->
+  <div
+    class="uofx-layout bg-white uofx-container uofx-form-container fixed-1100"
+  >
+    <div
+      class="uofx-layout-header padding-horizontal-2x padding-vertical-2x d-flex align-items-center width-100"
+    >
+      <div class="flex-1 padding-left-2x">
+        <span class="text-d-t3 font-weight-600">維護</span>
+      </div>
+      <div class="padding-right-2x header-btn">
+        <uofx-button [mode]="'u-btn-primary'">
+          <uofx-icon uofName="mi-add"></uofx-icon>
+          <span>新增</span>
+        </uofx-button>
+      </div>
+    </div>
+    <div class="uofx-layout-content padding-horizontal-3x padding-bottom-3x">
+      <!-- 列表 -->
+      <p-table
+        [value]="dataList"
+        [rowHover]="true"
+        [scrollable]="true"
+        scrollHeight="100%"
+        [styleClass]="'height-100'"
+      >
+        <ng-template pTemplate="header">
+          <tr>
+            <th width="50%">名稱</th>
+            <th width="8%">版本</th>
+            <th width="22%">發佈者</th>
+            <th width="20%">發佈時間</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-item>
+          <tr>
+            <td>{{ item.name }}</td>
+            <td>{{ item.version }}</td>
+            <td>{{ item.user }}</td>
+            <td>{{ item.time }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+<ng-container *ngFor="let item of menuItems">
+  <div class="list-group-header">{{ item.text }}</div>
+  <ul>
+    <ng-container *ngFor="let subItem of item.subItems">
+      <ng-container *ngIf="subItem.separator; else elseTemplate">
+        <li class="separator"></li>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <li [routerLink]="[subItem.url]">{{ subItem.text }}</li>
+      </ng-template>
+    </ng-container>
+  </ul>
+</ng-container>

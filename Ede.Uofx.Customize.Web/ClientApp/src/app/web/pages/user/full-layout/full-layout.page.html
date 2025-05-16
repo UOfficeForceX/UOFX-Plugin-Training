@@ -1,0 +1,24 @@
+<div class="uofx-layout uofx-container">
+  <div class="uofx-layout-header">
+    <uofx-breadcrumb [items]="breadCrumbItems"></uofx-breadcrumb>
+  </div>
+  <div class="bg-white box-shadow content">
+    <div class="row margin-bottom-4x" *ngFor="let data of dataList">
+      <div class="col-12 margin-bottom">
+        <span class="text-d-st2 font-weight-600">
+          <span>{{data.type}}</span>
+        </span>
+      </div>
+      <div class="col-3" *ngFor="let item of data.items">
+        <div class="card-item has-hover" [routerLink]="item.name === '出差單' ? baseUrl.userPlugin + '/tab' : '/user'">
+          <div class="margin-right d-flex">
+            <uofx-icon [uofName]="item.icon" [uofColor]="item.color" [uofSize]="30"></uofx-icon>
+          </div>
+          <div class="text-d-b3">
+            <span>{{ item.name }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
