@@ -1,0 +1,10 @@
+{
+  "$schema": "../node_modules/@uofx/plugin/schema/plugin-manifest.schema.json",
+  "schemaVersion": "112",
+  "name": "一等一外掛模組範例",
+  "code": "Ede.Sample.Plugin",
+  "description": "新一代 UOF X 外掛模組",
+  "manufacturerCode": "Ede",
+  "manufacturer": "一等一科技",
+  "production": false
+}

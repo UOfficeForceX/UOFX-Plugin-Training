@@ -1,0 +1,44 @@
+@import "variables";
+@import "shared/colors";
+
+:host {
+  ::ng-deep {
+    display: block;
+    width: 240px;
+    height: 100%;
+
+    background-color: get-color(gr-50);
+    box-shadow: $box-shadow;
+
+    .list-group-header {
+      padding: 8px;
+      color: get-color(bl-800);
+      font-weight: 700;
+    }
+
+    ul {
+      list-style-type: none;
+      margin-block-start: 0;
+      padding-inline-start: 0;
+
+      li {
+        line-height: 32px;
+        padding-left: 24px;
+
+        &.separator {
+          width: 120px;
+          margin: 4px 0 4px 24px;
+          border-bottom: 1px solid get-color(gr-600);
+        }
+
+        &:not(.separator) {
+          cursor: pointer;
+
+          &:hover {
+            background-color: get-color(gr-300);
+          }
+        }
+      }
+    }
+  }
+}
