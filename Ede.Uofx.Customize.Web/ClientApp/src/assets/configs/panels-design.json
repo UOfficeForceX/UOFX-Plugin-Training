@@ -1,0 +1,24 @@
+{
+  "$schema": "../../../node_modules/@uofx/plugin/schema/panels-design.schema.json",
+  "admin": [
+    {
+      "code": "adminSample",
+      "name": "管理面板",
+      "sizeConfig": {
+        "defaultCols": 6,
+        "defaultRows": 2
+      }
+    }
+  ],
+  "user": [
+    {
+      "code": "userSample",
+      "name": "使用者面板",
+      "sizeConfig": {
+        "defaultCols": 6,
+        "defaultRows": 2
+      }
+    }
+  ],
+  "app": []
+}

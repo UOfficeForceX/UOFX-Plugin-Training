@@ -1,0 +1,12 @@
+<p-dialog #pDialog [(visible)]="visible">
+  <ng-template pTemplate="header">
+    <uofx-dialog-header>
+      檢視商品
+    </uofx-dialog-header>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <uofx-dialog-body>
+      商品名稱：{{ params?.name }}
+    </uofx-dialog-body>
+  </ng-template>
+</p-dialog>

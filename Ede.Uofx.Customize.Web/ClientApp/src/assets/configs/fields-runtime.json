@@ -1,0 +1,29 @@
+{
+  "$schema": "../../../node_modules/@uofx/plugin/schema/fields-runtime.schema.json",
+  "sampleField": {
+    "exposedModule": "./HelloWorld",
+    "moduleName": "HelloWorldModule",
+    "app": {
+      "exposedModule": "./HelloWorld",
+      "moduleName": "FieldHelloWorldAppModule"
+    }
+  },
+  "anotherField": {
+    "exposedModule": "./AdvancedField",
+    "moduleName": "AdvancedFieldModule",
+    "app": {
+      "exposedModule": "./AdvancedField",
+      "moduleName": "FieldAdvancedAppModule"
+    }
+  },
+  "orderFieldComplete": {
+    "exposedModule": "./OrderFieldComplete",
+    "moduleName": "OrderFieldCompleteModule",
+    "app": {}
+  },
+  "template": {
+    "exposedModule": "./Template",
+    "moduleName": "TemplateModule",
+    "app": {}
+  }
+}
