@@ -1,0 +1,15 @@
+{
+  "$schema": "../../../node_modules/@uofx/plugin/schema/panels-runtime.schema.json",
+  "adminSample": {
+    "exposedModule": "./Panel/Admin",
+    "moduleName": "HelloWorldPanelComponent"
+  },
+  "userSample": {
+    "exposedModule": "./Panel/User",
+    "moduleName": "HelloWorldPanelComponent"
+  },
+  "appSample": {
+    "exposedModule": "./Panel/App",
+    "moduleName": "HelloWorldPanelComponent"
+  }
+}

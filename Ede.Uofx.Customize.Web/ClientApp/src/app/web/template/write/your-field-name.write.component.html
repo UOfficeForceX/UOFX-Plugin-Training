@@ -1,0 +1,10 @@
+<div>
+  <uofx-form-field-name [name]="name" [required]="required">
+  </uofx-form-field-name>
+</div>
+<div class="fw-control">
+  <uofx-error-block [uofErrorI18nKeys]="errorMessage" [showHeader]="true"></uofx-error-block>
+  <div class="fw-descr" *ngIf="showDescr && descr">
+    {{ descr }}
+  </div>
+</div>
