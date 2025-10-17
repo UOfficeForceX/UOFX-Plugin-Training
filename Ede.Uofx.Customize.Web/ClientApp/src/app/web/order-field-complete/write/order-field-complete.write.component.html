@@ -1,0 +1,35 @@
+<div>
+  <uofx-form-field-name [name]="name" [required]="required">
+  </uofx-form-field-name>
+</div>
+<div class="fw-control">
+  <uofx-error-block [uofErrorI18nKeys]="errorMessage" [showHeader]="true"></uofx-error-block>
+  <uofx-button class="margin-top" [mode]="'u-btn-primary'" (click)="showDialog()">
+    <span>開啟商品列表</span>
+  </uofx-button>
+  <form [formGroup]="form" *ngIf="form.value.products?.length > 0">
+    <p-table [value]="form.get('products').controls" [paginator]="true" [rows]="5" formArrayName="products">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>商品名稱</th>
+          <th>庫存</th>
+          <th>價格</th>
+          <th><span uofx-required>數量</span></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-product let-i="rowIndex">
+        <tr [formGroupName]="i">
+          <td>{{ product.value.productName }}</td>
+          <td>{{ product.value.unitsInStock }}</td>
+          <td>{{ product.value.unitPrice }}</td>
+          <td>
+            <p-inputNumber formControlName="quantity" (onFocus)="$event.target.select()"></p-inputNumber>
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </form>
+  <div class="fw-descr" *ngIf="showDescr && descr">
+    {{ descr }}
+  </div>
+</div>

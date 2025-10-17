@@ -1,0 +1,123 @@
+{
+    "UOF Props": {
+        "prefix": "u-props",
+        "body": [
+            "<form [formGroup]=\"${1:form}\">",
+            "  <section class=\"padding-horizontal-2x\">",
+            "    <div class=\"margin-vertical-2x\">",
+            "      <span>${2:目前沒有任何可設置屬性}</span>",
+            "    </div>",
+            "  </section>",
+            "</form>"
+        ],
+        "description": "UOF Props"
+    },
+    "UOF Write": {
+        "prefix": "u-write",
+        "body": [
+            "<div>",
+            "  <uofx-form-field-name [name]=\"${1:name}\" [required]=\"${2:required}\">",
+            "  </uofx-form-field-name>",
+            "</div>",
+            "<div class=\"fw-control\">",
+            "  <uofx-error-block [uofErrorI18nKeys]=\"${3:errorMessage}\" [showHeader]=\"${4:true}\"></uofx-error-block>",
+            "  <!--外掛欄位內容-->",
+            "  <div class=\"fw-descr\" *ngIf=\"${5:showDescr} && ${6:descr}\">",
+            "    {{ ${6:descr} }}",
+            "  </div>",
+            "</div>"
+        ],
+        "description": "UOF Write"
+    },
+    "UOF Dialog": {
+        "prefix": "u-dialog",
+        "body": [
+            "<p-dialog #pDialog [(visible)]=\"visible\">",
+            "  <ng-template pTemplate=\"header\">",
+            "    <uofx-dialog-header [title]=\"'Title'\"></uofx-dialog-header>",
+            "  </ng-template>",
+            "  <ng-template pTemplate=\"content\">",
+            "    <uofx-dialog-body>",
+            "",
+            "    </uofx-dialog-body>",
+            "  </ng-template>",
+            "  <ng-template pTemplate=\"footer\">",
+            "    <uofx-dialog-footer>",
+            "",
+            "    </uofx-dialog-footer>",
+            "  </ng-template>",
+            "</p-dialog>"
+        ],
+        "description": "UOF Dialog"
+    },
+    "UOF Primary Button": {
+        "prefix": "u-btn-primary",
+        "body": [
+            "<uofx-button [mode]=\"'u-btn-primary'\"></uofx-button>"
+        ],
+        "description": "UOF Primary Button"
+    },
+    "UOF Cancel Button": {
+        "prefix": "u-btn-cancel",
+        "body": [
+            "<uofx-button [mode]=\"'u-btn-cancel'\"></uofx-button>"
+        ],
+        "description": "UOF Cancel Button"
+    },
+    "PrimeNG Select Table": {
+        "prefix": "u-table-select",
+        "body": [
+            "<p-table [value]=\"${1}\" [paginator]=\"true\" [rows]=\"10\" [tableStyle]=\"{ 'min-width': '50rem' }\"",
+            "[(selection)]=\"${2}\" dataKey=\"${3}\">",
+            "    <ng-template pTemplate=\"header\">",
+            "        <tr>",
+            "            <th style=\"width: 4rem\"><p-tableHeaderCheckbox /></th>",
+            "            <th>${4}</th>",
+            "            <th>${5}</th>",
+            "            <th>${6}</th>",
+            "        <tr>",
+            "    </ng-template>",
+            "    <ng-template pTemplate=\"body\" let-item>",
+            "        <tr>",
+            "            <td><p-tableCheckbox [value]=\"item\" /></td>",
+            "            <td>{{ ${7} }}</td>",
+            "            <td>{{ ${8} }}</td>",
+            "            <td>{{ ${9} }}</td>",
+            "        <tr>",
+            "    </ng-template>",
+            "</p-table>"
+        ],
+        "description": "Primng select Table"
+    },
+    "PrimeNG Table": {
+        "prefix": "u-table",
+        "body": [
+            "<p-table [value]=\"${1}\" [paginator]=\"true\" [rows]=\"5\" [tableStyle]=\"{ 'min-width': '50rem' }\">",
+            "    <ng-template pTemplate=\"header\">",
+            "        <tr>",
+            "            <th>${2}</th>",
+            "            <th>${3}</th>",
+            "            <th>${4}</th>",
+            "            <th>${5}</th>",
+            "        <tr>",
+            "    </ng-template>",
+            "    <ng-template pTemplate=\"body\" let-item>",
+            "        <tr>",
+            "            <td>{{ ${6} }}</td>",
+            "            <td>{{ ${7} }}</td>",
+            "            <td>{{ ${8} }}</td>",
+            "            <td>${9}</td>",
+            "        <tr>",
+            "    </ng-template>",
+            "</p-table>"
+        ],
+        "description": "Primng Table"
+    },
+    "PrimeNG InputNumber": {
+        "prefix": "u-input-number",
+        "body": [
+            "<p-inputNumber formControlName=\"${1}\" (onFocus)=\"\\$event.target.select()\"></p-inputNumber>"
+        ],
+        "description": "PrimeNG InputNumber"
+    }
+}

@@ -1,0 +1,83 @@
+<div>
+  <uofx-form-field-name [name]="name" [required]="required">
+  </uofx-form-field-name>
+</div>
+<div class="fw-control">
+  <uofx-error-block [errorMessage]="errorMessage"></uofx-error-block>
+  <form uofx-form [formGroup]="form">
+    <div class="margin-bottom">
+      <div>
+        <label uofx-label>帳號</label>
+      </div>
+      <div>
+        <span>{{form.controls.account.value}}</span>
+      </div>
+    </div>
+    <div *ngIf="exProps?.isShowEmpNo" class="margin-bottom">
+      <div>
+        <label uofx-label [attr.uofx-required]="editable ? '' : null">員工編號</label>
+      </div>
+      <div>
+        <ng-container *ngIf="editable else tViewEmpNo;">
+          <ion-input formControlName="empNo" [placeholder]="'請輸入文字'">
+          </ion-input>
+          <span class="text-t2-r-6">合法員編為:A001、A002</span>
+          <uofx-form-error-tip [control]="form.controls.empNo" [requiredText]="'員工編號必填'"></uofx-form-error-tip>
+        </ng-container>
+        <ng-template #tViewEmpNo>
+          <span>{{form.controls.empNo.value}}</span>
+        </ng-template>
+      </div>
+    </div>
+    <div class="margin-bottom">
+      <div>
+        <label uofx-label [attr.uofx-required]="editable ? '' : null">行動電話</label>
+      </div>
+      <div>
+        <ng-container *ngIf="editable else tViewMobile;">
+          <ion-input formControlName="mobile" [placeholder]="'請輸入文字'">
+          </ion-input>
+          <uofx-form-error-tip [control]="form.controls.mobile">
+          </uofx-form-error-tip>
+        </ng-container>
+        <ng-template #tViewMobile>
+          <span>{{value?.mobile}}</span>
+        </ng-template>
+      </div>
+    </div>
+    <div class="margin-bottom">
+      <div>
+        <label uofx-label [attr.uofx-required]="editable ? '' : null">申請日期</label>
+      </div>
+      <div>
+        <ng-container *ngIf="editable else tViewApplyDate;">
+          <uofx-date-picker formControlName="applyDate"></uofx-date-picker>
+          <uofx-form-error-tip [control]="form.controls.applyDate">
+            <div
+              *ngIf="form.controls.applyDate?.hasError('required') || form.controls.applyDate?.hasError('invalidApplyDate')">
+              日期必填且不可超出 {{exProps?.checkDays}} 天範圍
+            </div>
+          </uofx-form-error-tip>
+        </ng-container>
+        <ng-template #tViewApplyDate>
+          <span>{{value?.applyDate | date: 'yyyy/MM/dd'}}</span>
+        </ng-template>
+      </div>
+    </div>
+    <div>
+      <div>
+        <label uofx-label [attr.uofx-required]="editable ? '' : null">職務代理人</label>
+      </div>
+      <div>
+        <ng-container *ngIf="editable else tViewAgent;">
+          <uofx-user-select formControlName="agent" [corpId]="corpId" [types]="userSelectTypes"></uofx-user-select>
+          <uofx-form-error-tip [control]="form.controls.agent"></uofx-form-error-tip>
+        </ng-container>
+        <ng-template #tViewAgent>
+          <uofx-user-select-view [userSet]="form.controls.agent.value">
+          </uofx-user-select-view>
+        </ng-template>
+      </div>
+    </div>
+  </form>
+</div>
