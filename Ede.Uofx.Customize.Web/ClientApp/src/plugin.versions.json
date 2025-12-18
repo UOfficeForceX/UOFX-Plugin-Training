@@ -1,0 +1,10 @@
+{
+  "$schema": "../node_modules/@uofx/plugin/schema/plugin-versions.schema.json",
+  "versions": [
+    {
+      "version": "1.0",
+      "minimumUOFXVersion": "2.89.0",
+      "changelog": ["全新對話功能上線！"]
+    }
+  ]
+}

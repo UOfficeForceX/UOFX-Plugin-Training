@@ -1,0 +1,70 @@
+<div class="uofx-layout uofx-container">
+  <div class="uofx-layout-header">
+    <uofx-breadcrumb [items]="breadCrumbItems"></uofx-breadcrumb>
+  </div>
+  <div class="box-shadow bg-white height-100">
+    <!-- tab -->
+    <p-tabView
+      styleClass="uofx-tab-basic two-tabs"
+      (onChange)="onTabSelectedIndex($event)"
+    >
+      <p-tabPanel *ngFor="let text of tabs">
+        <ng-template pTemplate="header">
+          <span>{{ text }}</span>
+        </ng-template>
+      </p-tabPanel>
+    </p-tabView>
+
+    <div class="tab-content">
+      <!-- 查詢條件 -->
+      <ng-container *ngTemplateOutlet="tHeader"></ng-container>
+      <!-- 內容 -->
+      <div class="padding-horizontal-3x">
+        <ng-container *ngIf="tabIndex === 0 else tTab2Content">
+          <p-table [value]="dataList" [rowHover]="true">
+            <ng-template pTemplate="header">
+              <tr>
+                <th width="50%">名稱</th>
+                <th width="8%">版本</th>
+                <th width="22%">發佈者</th>
+                <th width="20%">發佈時間</th>
+              </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+              <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.version }}</td>
+                <td>{{ item.user }}</td>
+                <td>{{ item.time }}</td>
+              </tr>
+            </ng-template>
+          </p-table>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 查詢條件區塊 -->
+<ng-template #tHeader>
+  <div class="row query-content bg-gr-300">
+    <div class="col-2 margin-left-3x">
+      <p-dropdown
+        styleClass="width-100"
+        [options]="types"
+        optionLabel="name"
+        placeholder="請選擇"
+      />
+    </div>
+    <div class="col-3">
+      <input pInputText class="width-100" placeholder="請輸入名稱" />
+    </div>
+    <div class="col-1">
+      <uofx-button uofx-button [mode]="'u-btn-third'">
+        <span>查詢</span>
+      </uofx-button>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #tTab2Content> tab2 </ng-template>

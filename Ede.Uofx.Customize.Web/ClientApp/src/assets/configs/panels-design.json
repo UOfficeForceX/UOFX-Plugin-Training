@@ -1,0 +1,29 @@
+{
+  "$schema": "../../../node_modules/@uofx/plugin/schema/panels-design.schema.json",
+  "admin": [
+    {
+      "code": "adminSample",
+      "name": "商品概況",
+      "sizeConfig": {
+        "defaultCols": 6,
+        "defaultRows": 2
+      }
+    }
+  ],
+  "user": [
+    {
+      "code": "userSample",
+      "name": "列表清單",
+      "sizeConfig": {
+        "defaultCols": 6,
+        "defaultRows": 2
+      }
+    }
+  ],
+  "app": [
+    {
+      "code": "appSample",
+      "name": "最新上架商品"
+    }
+  ]
+}

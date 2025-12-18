@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="onDismissClick()">
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>DEMO</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <div class=" padding-2x">
+    <div class="text-t1-m-3">
+      <ng-container *ngIf="name; else tEmpty">
+        產品名稱: {{ name }}
+      </ng-container>
+    </div>
+  </div>
+  <ng-template #tEmpty>無產品名稱</ng-template>
+</ion-content>
