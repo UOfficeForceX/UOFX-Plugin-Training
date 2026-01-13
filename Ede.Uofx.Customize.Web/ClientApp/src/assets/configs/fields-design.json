@@ -1,0 +1,64 @@
+{
+  "$schema": "../../../node_modules/@uofx/plugin/schema/fields-design.schema.json",
+  "fieldGroups": [
+    {
+      "code": "group1",
+      "name": "群組一"
+    },
+    {
+      "code": "group2",
+      "name": "群組二"
+    }
+  ],
+  "fields": [
+    {
+      "group": "group1",
+      "code": "sampleField",
+      "name": "sample欄位",
+      "icon": "assets/icons/u-plugin-form.svg",
+      "sizeConfig": {
+        "defaultCols": 2,
+        "defaultRows": 1,
+        "minCols": 1,
+        "minRows": 1
+      }
+    },
+    {
+      "group": "group1",
+      "code": "anotherField",
+      "name": "進階欄位",
+
+      "icon": "assets/icons/u-plugin-form.svg",
+      "sizeConfig": {
+        "defaultCols": 8,
+        "defaultRows": 2,
+        "minCols": 8,
+        "minRows": 2
+      }
+    },
+    {
+      "group": "group2",
+      "code": "orderFieldComplete",
+      "name": "訂單欄位(完成品)",
+      "icon": "assets/icons/u-plugin-form.svg",
+      "sizeConfig": {
+        "defaultCols": 4,
+        "defaultRows": 1,
+        "minCols": 4,
+        "minRows": 1
+      }
+    },
+    {
+      "group": "group2",
+      "code": "template",
+      "name": "模板",
+      "icon": "assets/icons/u-plugin-form.svg",
+      "sizeConfig": {
+        "defaultCols": 4,
+        "defaultRows": 1,
+        "minCols": 4,
+        "minRows": 1
+      }
+    }
+  ]
+}

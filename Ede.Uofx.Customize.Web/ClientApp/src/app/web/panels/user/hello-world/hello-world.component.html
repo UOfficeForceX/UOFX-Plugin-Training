@@ -1,0 +1,67 @@
+<div class="u-panel-user uofx-layout">
+  <div class="uofx-layout-header">
+    <div class="u-panel-header">
+      <a class="u-panel-title" [routerLink]="targetLink">列表清單</a>
+      <!--資料範圍：全部-->
+      <uofx-icon class="margin-left" [uofName]="'mi-o-info'" [uofSize]="15" [uofColor]="'gb-400'" [pTooltip]="'資料範圍：全部'"
+        [tooltipPosition]="'bottom'"></uofx-icon>
+    </div>
+    @if (products?.length > 0) {
+    <div class="u-panel-action">
+      <uofx-button [mode]="'u-btn-primary'" [outlined]="true" [smallSize]="true" [routerLink]="targetLink">
+        看全部
+      </uofx-button>
+    </div>
+    }
+  </div>
+  <div class="uofx-layout-content u-panel-content">
+    @if (!isLoading) {
+    <ng-container [ngTemplateOutlet]="tContent"> </ng-container>
+    } @else {
+    <ng-container [ngTemplateOutlet]="tLoading"> </ng-container>
+    }
+  </div>
+  <div class="uofx-layout-footer padding-bottom-2x">
+    @if (products?.length > 0) {
+    <uofx-pagination [liteMode]="true" [pageModel]="pagerModel" (pageChanged)="onPageChanged($event)">
+    </uofx-pagination>
+    }
+  </div>
+</div>
+
+<!-- 列表 -->
+<ng-template #tContent>
+  <p-dataView [value]="products">
+    <ng-template pTemplate="list" let-products>
+      @for( item of products; track $index){
+      <div class="u-panel-list-item" (click)="onItemClick(item)">
+        <div class="span-ellipsis text-d-b2-m width-100" [style]="{ marginBottom: '4px' }">{{ item.name
+          }}</div>
+        <div class="text-2-b3 margin-right-s text-nowrap">{{
+          item.createTime | dateFormat: 'yyyy/MM/dd HH:mm'
+          }}</div>
+      </div>
+      }
+    </ng-template>
+    <ng-template pTemplate="empty">
+      <ng-container [ngTemplateOutlet]="tEmpty"> </ng-container>
+    </ng-template>
+  </p-dataView>
+</ng-template>
+
+<!-- 空白狀態 -->
+<ng-template #tEmpty>
+  <div class="u-panel-empty">
+    <uofx-empty-status class="height-100 bg-white" [size]="'small'">
+      <img uofx-empty-status-image src="./assets/img/u-state-empty-u-form-check.svg" />
+      <span uofx-empty-status-description>沒有資料</span>
+    </uofx-empty-status>
+  </div>
+</ng-template>
+
+<!-- 載入中 -->
+<ng-template #tLoading>
+  <div class="d-flex align-items-center justify-content-center height-100">
+    <uofx-loading></uofx-loading>
+  </div>
+</ng-template>
