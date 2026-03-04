@@ -1,0 +1,59 @@
+<div class="u-panel panel-doc">
+  <div class="u-panel-header">
+    <!-- 最新上架產品 -->
+    <ion-text class="u-panel-title">最新上架產品</ion-text>
+    <div class="u-panel-buttons">
+      <!-- 看全部 -->
+      <ion-button class="uofx-btn-extra small" [translate]="'global.home.panel.show-all'" (click)="onBtnShowAllClick()">
+      </ion-button>
+    </div>
+  </div>
+
+  <!-- 載入中，載入完成使用內容樣板 -->
+  <ng-container *ngIf="isLoading; else tContent">
+    <div>
+      <uofx-skeleton [count]="3"></uofx-skeleton>
+    </div>
+  </ng-container>
+
+  <!-- 內容樣板， 有資料使用清單樣板，沒有則顯示 tEmpty -->
+  <ng-template #tContent>
+    <ng-container *ngIf="productList.length > 0; else tEmpty">
+      <ng-container *ngTemplateOutlet="tProducts"></ng-container>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #tProducts>
+    <ion-card>
+      <ion-list [lines]="'full'">
+        <ion-item *ngFor="let product of productList; let i = index" (click)="onItemClick(product)">
+          <ion-label>
+            <h2>
+              <!--產品分類-->
+              {{ product.category }}
+            </h2>
+            <!-- 產品名稱 -->
+            <h1>
+              <span class="text-ellipsis">{{ product.name }}</span>
+            </h1>
+            <!-- 上架時間 -->
+            <p>
+              {{ product.shelfTime | dateFormat: 'yyyy/MM/dd HH:mm' }}
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+  </ng-template>
+
+  <!-- 無資料 -->
+  <ng-template #tEmpty>
+    <ion-card>
+      <uofx-empty-status uofSize="small">
+        <img uofx-empty-status-image src="./assets/img/u-state-empty-u-not-found.svg" />
+        <!-- 最近沒有新文件 -->
+        <span uofx-empty-status-description>沒有最新商品</span>
+      </uofx-empty-status>
+    </ion-card>
+  </ng-template>
+</div>

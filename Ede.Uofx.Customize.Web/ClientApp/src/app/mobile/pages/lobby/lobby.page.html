@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="toolbar-title-left">功能名稱</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-segment
+      mode="md"
+      scrollable="true"
+      [value]="selectedTab"
+      (ionChange)="onSegmentChange($event)"
+    >
+      <ion-segment-button [value]="0">
+        <ion-label>滿版</ion-label>
+      </ion-segment-button>
+      <ion-segment-button [value]="1">
+        <ion-label>卡片</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen="true" *ngIf="selectedTab === 0 else tTab2Content">
+  <ion-list [lines]="'full'">
+    <ion-item *ngFor="let item of list" (click)="onClick(item)">
+      <ion-label>
+        <span class="d-block margin-bottom-s text-t1-m-4 text-ellipsis">
+          {{ item.name }}
+        </span>
+        <span class="d-block text-t2-r-5">
+          {{ item.dept }} {{ item.time | date: 'yyyy/MM/dd HH:mm'}}
+        </span>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
+
+<ng-template #tTab2Content>
+  <ion-content class="card-container" fullscreen="true">
+    <ion-card class="d-flex align-items-center margin-bottom margin-horizontal" [ngClass]="{'margin-top': i===0}"
+      *ngFor="let item of list; let i = index" (click)="onClick(item)">
+      <ion-grid fixed>
+        <ion-row>
+          <ion-col size="12">
+            <span class="d-block margin-bottom-s text-t1-m-4 text-ellipsis">
+              {{ item.name }}
+            </span>
+            <span class="d-block text-t2-r-5">
+              {{ item.dept }} {{ item.time | date: 'yyyy/MM/dd HH:mm'}}
+            </span>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </ion-content>
+</ng-template>

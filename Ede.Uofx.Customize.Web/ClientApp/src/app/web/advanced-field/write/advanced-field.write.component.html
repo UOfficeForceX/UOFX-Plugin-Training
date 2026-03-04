@@ -1,0 +1,210 @@
+<div>
+  <uofx-form-field-name [name]="name" [required]="required">
+  </uofx-form-field-name>
+</div>
+<div class="fw-control">
+  <uofx-error-block
+    [uofErrorI18nKeys]="errorMessage"
+    [showHeader]="true"
+  ></uofx-error-block>
+  是否可編輯:{{ editable }}
+  <table [formGroup]="form">
+    <tr>
+      <th><span>帳號</span></th>
+      <td colspan="3">
+        <span>{{ form.controls.account.value }}</span>
+      </td>
+    </tr>
+    <tr *ngIf="exProps?.isShowEmpNo">
+      <th><span [attr.uofx-required]="editable ? '' : null">員工編號</span></th>
+      <td colspan="3">
+        <ng-container *ngIf="editable; else tViewEmpNo">
+          <input type="text" pInputText formControlName="empNo" />
+          <span class="margin-left">合法員編為:A001、A002</span>
+          <uofx-form-error-tip
+            [control]="form.controls.empNo"
+            [requiredText]="'員工編號必填'"
+          ></uofx-form-error-tip>
+        </ng-container>
+        <ng-template #tViewEmpNo>
+          <span>{{ form.controls.empNo.value }}</span>
+        </ng-template>
+      </td>
+    </tr>
+    <tr>
+      <th><span [attr.uofx-required]="editable ? '' : null">行動電話</span></th>
+      <td>
+        <ng-container *ngIf="editable; else tViewMobile">
+          <input
+            type="text"
+            pInputText
+            formControlName="mobile"
+            [disabled]="!editable"
+          />
+          <uofx-form-error-tip [control]="form.controls.mobile">
+          </uofx-form-error-tip>
+        </ng-container>
+        <ng-template #tViewMobile>
+          <span>{{ form.controls.mobile.value }}</span>
+        </ng-template>
+      </td>
+      <th><span [attr.uofx-required]="editable ? '' : null">申請日期</span></th>
+      <td>
+        <ng-container *ngIf="editable; else tViewApplyDate">
+          <uofx-date-picker
+            [formControl]="form.controls.applyDate"
+          ></uofx-date-picker>
+          <uofx-form-error-tip [control]="form.controls.applyDate">
+            <span *ngIf="form.controls.applyDate?.hasError('invalidApplyDate')">
+              日期必填且不可超出 {{ exProps.checkDays }} 天範圍
+            </span>
+          </uofx-form-error-tip>
+        </ng-container>
+        <ng-template #tViewApplyDate>
+          <span>{{
+            form.controls.applyDate.value | dateFormat : "yyyy/MM/dd"
+          }}</span>
+        </ng-template>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <span [attr.uofx-required]="editable ? '' : null">職務代理人</span>
+      </th>
+      <td colspan="3">
+        <ng-container *ngIf="editable; else tViewAgent">
+          <uofx-user-select
+            formControlName="agent"
+            [corpId]="corpId"
+            [types]="userSelectTypes"
+            [multiple]="false"
+          ></uofx-user-select>
+          <uofx-form-error-tip
+            [control]="form.controls.agent"
+          ></uofx-form-error-tip>
+        </ng-container>
+        <ng-template #tViewAgent>
+          <uofx-user-select-view
+            [userSet]="form.controls.agent.value"
+          ></uofx-user-select-view>
+        </ng-template>
+      </td>
+    </tr>
+    <tr>
+      <th><span>申請次數</span></th>
+      <td colspan="3">
+        <ng-container *ngIf="editable; else tViewCount">
+          <p-inputNumber
+            formControlName="count"
+            [min]="0"
+            [max]="99"
+            [step]="1"
+            (onFocus)="$event.target.select()"
+          ></p-inputNumber>
+        </ng-container>
+        <ng-template #tViewCount>
+          <span>{{ form.controls.count.value }}</span>
+        </ng-template>
+      </td>
+    </tr>
+    <tr>
+      <th><span>上傳元件</span></th>
+      <td colspan="3">
+        <uofx-file-upload
+          formControlName="attachments"
+          [module]="'Plugin'"
+          [pluginCode]="pluginCode"
+          [disabled]="!editable"
+          [allowMultiple]="true"
+          [headerButton]="'attachments'"
+        ></uofx-file-upload>
+        <uofx-form-error-tip
+          [control]="form.controls.attachments"
+        ></uofx-form-error-tip>
+      </td>
+    </tr>
+  </table>
+
+  <!--外部起單-->
+  <section style="display: none">
+    <h4>外部起單</h4>
+    <table>
+      <tr>
+        <th><span uofx-required>申請者帳號</span></th>
+        <td>
+          <input type="text" pInputText [(ngModel)]="sdkAccount" />
+        </td>
+      </tr>
+      <tr>
+        <th><span uofx-required>申請者部門代號</span></th>
+        <td>
+          <input type="text" pInputText [(ngModel)]="sdkDeptCode" />
+        </td>
+      </tr>
+      <tr>
+        <th><span>附件完整路徑</span></th>
+        <td>
+          <input
+            type="text"
+            pInputText
+            class="width-100"
+            [(ngModel)]="sdkFilePath"
+          />
+        </td>
+      </tr>
+      <tr>
+        <th></th>
+        <td>
+          <div class="row sdk-content">
+            <div class="col-12 margin-bottom">
+              <uofx-button
+                uofx-button
+                [mode]="'u-btn-third'"
+                (click)="onApplyFormClick()"
+              >
+                <span>1.外部起單</span>
+              </uofx-button>
+              <uofx-button
+                class="margin-left"
+                uofx-button
+                [mode]="'u-btn-third'"
+                (click)="onGetResultClick()"
+              >
+                <span>2.取得SDK成功資料</span>
+              </uofx-button>
+            </div>
+            <div class="col-12" *ngIf="!sdkResultLoading">
+              <p-table
+                [value]="callbackResult"
+                [rowHover]="true"
+                [scrollable]="true"
+                scrollHeight="100%"
+              >
+                <ng-template pTemplate="header">
+                  <tr>
+                    <th>
+                      <span>Type</span>
+                    </th>
+                    <th>
+                      <span>Data</span>
+                    </th>
+                  </tr>
+                </ng-template>
+                <ng-template pTemplate="body" let-item>
+                  <tr class="pointer">
+                    <td>
+                      <span>{{ item.type }}</span>
+                    </td>
+                    <td>
+                      <span>{{ item.data }}</span>
+                    </td>
+                  </tr>
+                </ng-template>
+              </p-table>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </section>
+</div>

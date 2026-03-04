@@ -1,0 +1,59 @@
+<div class="uofx-layout full-layout-bg">
+  <div class="uofx-layout-header">
+    <!-- 麵包屑 -->
+    <div class="border-bottom padding-vertical padding-horizontal-3x">
+      <uofx-breadcrumb [items]="breadCrumbItems"> </uofx-breadcrumb>
+    </div>
+    <!-- tab & button -->
+    <div
+      class="d-flex justify-content-between padding-vertical padding-horizontal-3x"
+    >
+      <!-- tab -->
+      <p-tabView styleClass="hide-tabcontent">
+        <p-tabPanel>
+          <ng-template pTemplate="header">
+            <span>已發佈</span>
+          </ng-template>
+        </p-tabPanel>
+        <p-tabPanel>
+          <ng-template pTemplate="header">
+            <span>草稿</span>
+          </ng-template>
+        </p-tabPanel>
+        <p-tabPanel>
+          <ng-template pTemplate="header">
+            <span>過期</span>
+          </ng-template>
+        </p-tabPanel>
+      </p-tabView>
+      <!-- button -->
+      <div class="d-flex justify-content-end">
+        <uofx-button uofx-button [mode]="'u-btn-primary'">
+          <uofx-icon uofName="mi-add" uofSize="20"></uofx-icon>
+          <span>新增</span>
+        </uofx-button>
+      </div>
+    </div>
+  </div>
+  <!-- 列表 -->
+  <div class="uofx-layout-content padding-horizontal-3x">
+    <p-table [value]="dataList" [rowHover]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th width="50%">名稱</th>
+          <th width="8%">版本</th>
+          <th width="22%">發佈者</th>
+          <th width="20%">發佈時間</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.version }}</td>
+          <td>{{ item.user }}</td>
+          <td>{{ item.time }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

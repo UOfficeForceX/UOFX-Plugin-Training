@@ -1,0 +1,22 @@
+.uofx-layout-header {
+  height: unset;
+  padding: 12px 0;
+}
+
+
+.tab-content {
+  padding-top: 32px;
+  border-left: 1px solid get-color(gr-400);
+  border-right: 1px solid get-color(gr-400);
+  border-bottom: 1px solid get-color(gr-400);
+}
+
+
+.query-content {
+  margin: 0;
+  padding: 8px 0px;
+
+  > div {
+    padding-left: 0;
+  }
+}
