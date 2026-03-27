@@ -1,0 +1,5 @@
+/* <%= classify(name) %> Page Styles */
+.uofx-layout-header {
+  height: unset;
+  padding: 12px 0;
+}

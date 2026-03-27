@@ -1,0 +1,16 @@
+import { Component } from '@angular/core';
+import { BpmFwWriteComponent } from '@uofx/app-components/form';
+
+/**
+ * <%= classify(name) %> App 欄位元件
+ *
+ * 用於行動裝置端的表單填寫
+ */
+@Component({
+  selector: 'uofx-mobile-<%= dasherize(name) %>',
+  templateUrl: './<%= dasherize(name) %>.component.html',
+  styleUrls: ['./<%= dasherize(name) %>.component.scss']
+})
+export class <%= classify(name) %>Component extends BpmFwWriteComponent {
+  // 在此添加欄位屬性和邏輯
+}

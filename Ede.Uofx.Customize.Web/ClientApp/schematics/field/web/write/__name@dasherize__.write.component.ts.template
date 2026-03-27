@@ -1,0 +1,35 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { BpmFwWriteComponent } from '@uofx/web-components/form';
+import { <%= classify(name) %>PropModel, <%= classify(name) %>FillModel } from '@model/<%= dasherize(name) %>.model';
+
+/**
+ * <%= classify(name) %> 欄位填寫元件
+ *
+ * 用於表單填寫時的輸入介面
+ */
+@Component({
+  selector: 'uofx-<%= dasherize(name) %>-write',
+  templateUrl: './<%= dasherize(name) %>.write.component.html',
+  styleUrls: ['./<%= dasherize(name) %>.write.component.scss']
+})
+export class <%= classify(name) %>WriteComponent extends BpmFwWriteComponent implements OnInit {
+  @Input() exProps: <%= classify(name) %>PropModel;
+  /** 填寫 model */
+  value: <%= classify(name) %>FillModel;
+
+  constructor() {
+    super();
+  }
+
+  ngOnInit(): void {
+    // 程式碼進入點
+  }
+
+  /** 表單送出前檢查（必須實作） */
+  checkBeforeSubmit(checkValidator: boolean): Promise<boolean> {
+    return new Promise(resolve => {
+      // TODO: 實作驗證邏輯
+      resolve(true);
+    });
+  }
+}

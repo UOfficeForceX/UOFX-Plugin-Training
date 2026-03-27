@@ -1,0 +1,16 @@
+<div class="u-panel panel-doc">
+  <div class="u-panel-header">
+    <ion-text class="u-panel-title"><%= displayName %></ion-text>
+    <div class="u-panel-buttons">
+      <!-- 按鈕區域 -->
+    </div>
+  </div>
+
+  <!-- 內容區域 -->
+  <ion-card>
+    <ion-card-content>
+      <!-- TODO: 實作面板內容 -->
+      panel content
+    </ion-card-content>
+  </ion-card>
+</div>

@@ -1,0 +1,13 @@
+<!-- <%= displayName %> User Page -->
+<!-- 這是空白樣板，請在此開始編輯您的頁面內容 -->
+
+<div class="uofx-layout uofx-container">
+  <!-- 麵包屑導覽 -->
+  <div class="uofx-layout-header">
+    <uofx-breadcrumb [items]="breadCrumbItems"></uofx-breadcrumb>
+  </div>
+
+  <div class="bg-white box-shadow content">
+    <!-- 在此新增您的頁面內容 -->
+  </div>
+</div>

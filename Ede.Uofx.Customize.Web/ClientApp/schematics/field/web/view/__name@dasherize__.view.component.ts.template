@@ -1,0 +1,18 @@
+import { Component, Input } from '@angular/core';
+import { BpmFwViewComponent } from '@uofx/web-components/form';
+import { <%= classify(name) %>PropModel, <%= classify(name) %>FillModel } from '@model/<%= dasherize(name) %>.model';
+
+/**
+ * <%= classify(name) %> 欄位檢視元件
+ *
+ * 用於表單簽核/檢視時顯示欄位資料（唯讀）
+ */
+@Component({
+  selector: 'uofx-<%= dasherize(name) %>-view',
+  templateUrl: './<%= dasherize(name) %>.view.component.html',
+  styleUrls: ['./<%= dasherize(name) %>.view.component.scss']
+})
+export class <%= classify(name) %>ViewComponent extends BpmFwViewComponent {
+  @Input() exProps: <%= classify(name) %>PropModel;
+  value: <%= classify(name) %>FillModel;
+}

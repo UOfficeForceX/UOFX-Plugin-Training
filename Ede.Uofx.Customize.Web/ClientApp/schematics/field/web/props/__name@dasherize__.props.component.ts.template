@@ -1,0 +1,26 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { BpmFwPropsComponent } from '@uofx/web-components/form';
+import { <%= classify(name) %>PropModel } from '@model/<%= dasherize(name) %>.model';
+
+/**
+ * <%= classify(name) %> 欄位屬性設定元件
+ *
+ * 用於表單設計時設定欄位的屬性
+ */
+@Component({
+  selector: 'uofx-<%= dasherize(name) %>-props',
+  templateUrl: './<%= dasherize(name) %>.props.component.html',
+  styleUrls: ['./<%= dasherize(name) %>.props.component.scss']
+})
+export class <%= classify(name) %>PropsComponent extends BpmFwPropsComponent implements OnInit {
+  @Input() exProps: <%= classify(name) %>PropModel;
+
+  constructor(public fb: FormBuilder) {
+    super(fb);
+  }
+
+  ngOnInit(): void {
+    // 程式碼進入點
+  }
+}

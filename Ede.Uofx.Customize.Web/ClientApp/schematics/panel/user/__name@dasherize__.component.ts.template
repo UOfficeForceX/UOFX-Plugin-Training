@@ -1,0 +1,42 @@
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { UofxPluginPanel } from '@uofx/plugin';
+import { UofxPluginApiService } from '@uofx/plugin/api';
+import { UofxButtonModule } from '@uofx/web-components/button';
+import { UofxDialogModule } from '@uofx/web-components/dialog';
+import { UofxToastModule } from '@uofx/web-components/toast';
+import { UofxIconModule } from '@uofx/web-components/icon';
+
+/**
+ * <%= classify(name) %> 使用者端面板元件
+ *
+ * 用於使用者端的功能面板
+ */
+@Component({
+  standalone: true,
+  selector: 'uofx-user-<%= dasherize(name) %>-panel',
+  templateUrl: './<%= dasherize(name) %>.component.html',
+  styleUrls: ['./<%= dasherize(name) %>.component.scss'],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    RouterModule,
+    UofxButtonModule,
+    UofxDialogModule,
+    UofxIconModule,
+    UofxToastModule,
+  ],
+  providers: [UofxPluginApiService],
+})
+export class <%= classify(name) %>PanelComponent extends UofxPluginPanel implements OnInit {
+
+  constructor() {
+    super();
+  }
+
+  ngOnInit(): void {
+    // 程式碼進入點
+  }
+}

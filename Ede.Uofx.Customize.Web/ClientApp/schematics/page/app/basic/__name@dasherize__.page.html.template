@@ -1,0 +1,10 @@
+<!-- <%= displayName %> App Page -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="toolbar-title-left"><%= displayName %></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true">
+  <!-- 在此新增您的頁面內容 -->
+</ion-content>
