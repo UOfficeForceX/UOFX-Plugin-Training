@@ -1,0 +1,33 @@
+<p-dialog #pDialog [(visible)]="visible">
+  <ng-template pTemplate="header">
+    <uofx-dialog-header [title]="'商品列表'"></uofx-dialog-header>
+  </ng-template>
+  <ng-template pTemplate="content">
+    <uofx-dialog-body>
+      <p-table [(selection)]="selectedProducts" dataKey="productID" [value]="productList" [paginator]="true" [rows]="10" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 4rem"><p-tableHeaderCheckbox /></th>
+            <th>商品名稱</th>
+            <th>庫存</th>
+            <th>價格</th>
+          <tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product>
+          <tr>
+            <td><p-tableCheckbox [value]="product" /></td>
+            <td>{{ product.productName }}</td>
+            <td>{{ product.unitsInStock }}</td>
+            <td>{{ product.unitPrice }}</td>
+          <tr>
+        </ng-template>
+      </p-table>
+    </uofx-dialog-body>
+  </ng-template>
+  <ng-template pTemplate="footer">
+    <uofx-dialog-footer>
+      <uofx-button [mode]="'u-btn-cancel'" (click)="close()">取消</uofx-button>
+      <uofx-button [mode]="'u-btn-primary'" (click)="close(selectedProducts)">確認</uofx-button>
+    </uofx-dialog-footer>
+  </ng-template>
+</p-dialog>

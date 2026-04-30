@@ -1,0 +1,9 @@
+/* <%= classify(name) %> Page Styles */
+
+.full-layout-bg {
+  background-color: white !important;
+}
+
+.border-bottom {
+  border-bottom: 1px solid #cfd2d9;
+}

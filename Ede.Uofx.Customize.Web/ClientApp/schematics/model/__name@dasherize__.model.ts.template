@@ -1,0 +1,9 @@
+/** 屬性 model */
+export interface <%= classify(name) %>PropModel {
+
+}
+
+/** 填寫 model */
+export interface <%= classify(name) %>FillModel {
+
+}

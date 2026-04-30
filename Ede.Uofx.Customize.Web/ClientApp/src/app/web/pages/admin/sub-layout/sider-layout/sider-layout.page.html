@@ -1,0 +1,73 @@
+<div class="uofx-layout has-sider">
+  <div
+    class="uofx-layout-sider left-panel fixed-290">
+    <!-- 左側區塊 -->
+    <ng-container *ngTemplateOutlet="tLeft"></ng-container>
+  </div>
+  <div class="uofx-layout-content bg-white padding-vertical padding-horizontal-3x">
+    <div class="row">
+      <!-- 麵包屑 -->
+      <div class="padding-vertical-2x padding-left-2x col-6">
+        <uofx-breadcrumb [items]="breadCrumbItems"> </uofx-breadcrumb>
+      </div>
+    </div>
+    <!-- 功能名稱 -->
+    <div class="uofx-layout-header margin-bottom-2x margin-left d-flex">
+      <span class="text-d-t3 font-weight-600">功能名稱</span>
+    </div>
+      <!-- 列表 -->
+    <p-table [value]="dataList" [rowHover]="true">
+      <ng-template pTemplate="header">
+        <tr>
+          <th width="50%">名稱</th>
+          <th width="8%">版本</th>
+          <th width="22%">發佈者</th>
+          <th width="20%">發佈時間</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+        <tr>
+          <td>{{ item.name }}</td>
+          <td>{{ item.version }}</td>
+          <td>{{ item.user }}</td>
+          <td>{{ item.time }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>
+
+<!-- 左側區塊 -->
+<ng-template #tLeft>
+  <div class="uofx-layout height-100">
+    <div class="uofx-layout-header">
+      <div class="padding-horizontal padding-top">
+        <!-- 查詢輸入框 -->
+        <uofx-search-bar [placeholder]="'搜尋名稱'"> </uofx-search-bar>
+      </div>
+      <!-- 按鈕 -->
+      <div class="left-action d-flex align-items-center padding">
+        <uofx-button class="width-100" [mode]="'u-btn-second'">
+          <uofx-icon uofName="mi-add" uofSize="15"></uofx-icon>
+          <span>新增</span>
+        </uofx-button>
+      </div>
+      <!-- 分隔線 -->
+      <div [style.margin]="'8px 0 0'" class="uofx-horizontal-divider"></div>
+    </div>
+    <!-- 選單內容 -->
+    <div class="uofx-layout-content">
+      <p-menu styleClass="bg-gr-50" [model]="items" >
+        <ng-template let-item pTemplate="item">
+          <div
+            class="p-menuitem-link"
+            [ngClass]="{ selected: selected?.label === item.label }"
+            (click)="onMenuClick(item)">
+            <span class="u-list-text">{{ item.label }}</span>
+          </div>
+        </ng-template>
+      </p-menu>
+    </div>
+  </div>
+</ng-template>
+

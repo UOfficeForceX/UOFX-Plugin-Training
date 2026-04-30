@@ -1,0 +1,50 @@
+import { Component, Injector, inject } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { UofxConsole } from '@uofx/core';
+import { UofxPluginAuthorize, UofxPluginPage } from '@uofx/plugin';
+
+/**
+ * <%= classify(name) %> App 頁面元件
+ *
+ * 用於行動裝置的獨立頁面
+ */
+@UofxPluginAuthorize({ functionId: '<%= funcId %>' })
+@Component({
+  selector: 'uofx-app-<%= dasherize(name) %>-page',
+  templateUrl: './<%= dasherize(name) %>.page.html',
+  styleUrls: ['./<%= dasherize(name) %>.page.scss']
+})
+export class <%= classify(name) %>Page extends UofxPluginPage {
+  private injector = inject(Injector);
+
+  /** 選中的頁籤 */
+  selectedTab = 0;
+
+  /** 列表資料 */
+  list = [
+    { name: '項目一', dept: '部門A', time: new Date() },
+    { name: '項目二', dept: '部門B', time: new Date() },
+    { name: '項目三', dept: '部門C', time: new Date() }
+  ];
+
+  constructor(private modalCtrl: ModalController) {
+    super();
+  }
+
+  ionViewDidEnter(): void {
+    UofxConsole.log('=== <%= classify(name) %>Page ===');
+    UofxConsole.log('pluginSetting', this.pluginSetting);
+    UofxConsole.log('baseUrl', this.baseUrl.appPlugin);
+  }
+
+  /** 頁籤切換事件 */
+  onSegmentChange(event: CustomEvent): void {
+    this.selectedTab = event.detail.value;
+  }
+
+  /** 項目點擊事件 */
+  async onClick(item: any): Promise<void> {
+    // TODO: 實作點擊邏輯，例如開啟 Modal
+    UofxConsole.log('<%= classify(name) %>Page onClick', item);
+  }
+}
