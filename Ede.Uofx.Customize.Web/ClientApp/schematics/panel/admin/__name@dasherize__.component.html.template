@@ -1,0 +1,11 @@
+<div class="u-panel-admin uofx-layout">
+  <div class="uofx-layout-header">
+    <div class="u-panel-header">
+      <span class="u-panel-title"><%= displayName %></span>
+    </div>
+  </div>
+  <div class="uofx-layout-content u-panel-content">
+    <!-- TODO: 實作面板內容 -->
+    panel content
+  </div>
+</div>

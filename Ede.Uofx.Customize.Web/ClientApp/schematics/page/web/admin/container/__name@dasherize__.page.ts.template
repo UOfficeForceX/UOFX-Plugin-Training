@@ -1,0 +1,39 @@
+import { Component, OnInit } from '@angular/core';
+import { UofxPluginAuthorize, UofxPluginPage } from '@uofx/plugin';
+import { MenuItem } from 'primeng/api';
+
+/**
+ * <%= classify(name) %> 管理端頁面元件（置中容器佈局）
+ */
+@UofxPluginAuthorize({ functionId: '<%= funcId %>' })
+@Component({
+  selector: 'uofx-admin-<%= dasherize(name) %>-page',
+  templateUrl: './<%= dasherize(name) %>.page.html',
+  styleUrls: ['./<%= dasherize(name) %>.page.scss']
+})
+export class <%= classify(name) %>Page extends UofxPluginPage implements OnInit {
+  /** 麵包屑清單 */
+  breadCrumbItems: Array<MenuItem> = [
+    { label: '管理', routerLink: [this.baseUrl.admin] },
+    { label: '<%= displayName %>' },
+  ];
+
+  /** 列表清單 */
+  dataList: any[] = [];
+
+  constructor() {
+    super();
+  }
+
+  ngOnInit(): void {
+    // 模擬資料
+    for (let i = 0; i < 10; i++) {
+      this.dataList.push({
+        name: `項目_${i}`,
+        version: i.toString(),
+        user: `使用者${i}`,
+        time: new Date().toLocaleString()
+      });
+    }
+  }
+}
