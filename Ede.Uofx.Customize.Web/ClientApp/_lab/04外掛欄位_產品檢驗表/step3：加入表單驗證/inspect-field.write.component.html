@@ -1,0 +1,45 @@
+<div>
+  <uofx-form-field-name [name]="name" [required]="required">
+  </uofx-form-field-name>
+</div>
+<div class="fw-control">
+  <table [formGroup]="form">
+    <tr>
+      <th><span>Title1</span></th>
+      <td>
+        <span>Content1</span>
+      </td>
+      <th><span>Title2</span></th>
+      <td>
+        <span>Content2</span>
+      </td>
+    </tr>
+    <tr>
+      <th><span>Title3</span></th>
+      <td colspan="3">
+        <span>Content3</span>
+      </td>
+    </tr>
+    <tr>
+      <th><span [attr.uofx-required]="editable ? true : null">評語</span></th>
+      <td colspan="3">
+        <input pInputText formControlName="comment"/>
+        <uofx-form-error-tip [control]="form.controls.comment"></uofx-form-error-tip>
+      </td>
+    </tr>
+    <tr>
+      <th><span [attr.uofx-required]="editable ? true : null">檢驗數量</span></th>
+      <td colspan="3">
+        <p-inputNumber formControlName="inspQuantity"></p-inputNumber>
+        <uofx-form-error-tip [control]="form.controls.inspQuantity" rangeText="檢驗數量不可為 0"></uofx-form-error-tip>
+      </td>
+    </tr>
+    <tr>
+      <th><span>檢驗結果</span></th>
+      <td colspan="3">
+        <p-dropdown formControlName="inspResult" [options]="options" optionLabel="name" optionValue="code"
+        styleClass="width-100" filter="true" filterBy="name"></p-dropdown>
+      </td>
+    </tr>
+  </table>
+</div>

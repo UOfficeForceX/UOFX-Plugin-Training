@@ -1,0 +1,148 @@
+import { Component, Input, OnInit } from '@angular/core';
+import { BpmFwWriteComponent, UofxValidators, UofxFormTools, UofxFormFieldLogic } from '@uofx/web-components/form';
+import { InspectFieldPropModel, InspectFieldFillModel } from '@model/inspect-field.model';
+import { AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { UofxDialogController, UofxDialogOptions } from '@uofx/web-components/dialog';
+import { ProductListComponent } from './_dialog/product-list/product-list.component';
+import { NorthWindService } from '@service/northwind.service';
+import { Settings, UofxConsole } from '@uofx/core';
+import { UofxUserSetItemType, UofxUserSetPluginHelper } from '@uofx/web-components/user-select';
+import { environment as env } from '@env/environment';
+import { UofxFilePluginService } from '@uofx/web-components/file';
+
+
+/**
+ * InspectField 欄位填寫元件
+ *
+ * 用於表單填寫時的輸入介面
+ */
+@Component({
+  selector: 'uofx-inspect-field-write',
+  templateUrl: './inspect-field.write.component.html',
+  styleUrls: ['./inspect-field.write.component.scss']
+})
+export class InspectFieldWriteComponent extends BpmFwWriteComponent implements OnInit {
+  @Input() exProps: InspectFieldPropModel;
+  /** 填寫 model */
+  value: InspectFieldFillModel;
+  form: FormGroup;
+  /** 登入者公司id */
+  corpId = Settings.UserInfo.corpId;
+  /** 選人元件可選類別 */
+  types: Array<UofxUserSetItemType> = [UofxUserSetItemType.DeptEmployee];
+  /** 取得 pluginCode */
+  pluginCode = env.manifest.code;
+
+
+  options = [
+    { name: '通過', code: 'PASSED' },
+    { name: '不通過', code: 'FAILED' },
+    { name: '需複驗', code: 'RETEST' }
+  ];
+
+  constructor(
+    private fb: FormBuilder,
+    private tools: UofxFormTools,
+    private fieldLogic: UofxFormFieldLogic,
+    private dialogCtrl: UofxDialogController,
+    private northWindServ: NorthWindService,
+    private userSetHelper: UofxUserSetPluginHelper,
+    private filePluginServ: UofxFilePluginService) {
+    super();
+  }
+
+  ngOnInit(): void {
+    // 程式碼進入點
+    this.northWindServ.serverUrl = this.pluginSetting?.entryHost;
+    this.initForm();
+    this.fieldUtils.syncParentFormStatusToInnerForm(this.form);
+  }
+
+  initForm() {
+    this.form = this.fb.group({
+      comment: [null, [Validators.required, UofxValidators.notAllowedSpaceString]],
+      inspQuantity: [null, [Validators.required, Validators.min(1)]],
+      inspResult: [null],
+      inspProduct: [null],
+      inspDate: [null],
+      inspector: [null],
+      inspReport: [null]
+    })
+
+    if (this.selfControl) {
+      this.selfControl.setValidators(validateSelf(this.form));
+      this.selfControl.updateValueAndValidity();
+    }
+
+    this.setFormValue();
+  }
+
+  setFormValue() {
+    if (this.value) {
+      this.form.controls.comment.setValue(this.value.comment);
+      this.form.controls.inspQuantity.setValue(this.value.inspQuantity);
+      this.form.controls.inspResult.setValue(this.value.inspResult);
+      this.form.controls.inspProduct.setValue(this.value.inspProduct);
+      this.form.controls.inspDate.setValue(this.value.inspDate);
+      this.form.controls.inspector.setValue(this.value.inspector);
+      this.form.controls.inspReport.setValue(this.value.inspReport);
+    } else {
+      /** 填入選人元件預設值 */
+      this.userSetHelper.getUserSetByType(
+        UofxUserSetItemType.DeptEmployee, [{ deptCode: 'deptCode', account: 'account' }]
+      ).subscribe({
+        next: res => {
+          this.form.controls.inspector.setValue(res);
+        }
+      })
+    }
+  }
+
+  showDialog() {
+    this.dialogCtrl.create(<UofxDialogOptions>{
+      component: ProductListComponent,
+      size: 'large',
+      params: { data: this.form.controls.inspProduct.value },
+    }).afterClose.subscribe({
+      next: res => {
+        if (res) this.form.controls.inspProduct.setValue(res);
+      }
+    });
+  }
+
+  clearProduct() {
+    this.form.controls.inspProduct.setValue(null);
+  }
+
+
+  /** 表單送出前檢查（必須實作） */
+  checkBeforeSubmit(checkValidator: boolean): Promise<boolean> {
+    return new Promise(resolve => {
+      // 真正送出欄位值變更的函式
+      this.valueChanges.emit(this.form.getRawValue());
+      // 提交檔案
+      if (this.form.controls.inspReport.value) {
+        this.filePluginServ.submitFile(this.form.controls.inspReport.value).subscribe({
+          next: res => {
+            UofxConsole.log("已提交");
+          }
+        })
+      }
+      // 設定 FormGroup 的驗證狀態
+      this.tools.markFormGroup(this.form);
+      // 若不需驗證，清除 form control error
+      this.fieldLogic.checkValidators(checkValidator, this.selfControl, this.form);
+      // 若不需檢查驗證，直接回傳 true
+      if (!checkValidator) return resolve(true);
+      // 檢查驗證且表單驗證不通過時，不可送出表單
+      resolve(this.form.valid);
+    });
+  }
+}
+
+// BpmFwWriteComponent
+function validateSelf(form: FormGroup): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    return form.valid ? null : { formInvalid: true };
+  }
+}

@@ -1,0 +1,65 @@
+<div>
+  <uofx-form-field-name [name]="name" [required]="required">
+  </uofx-form-field-name>
+</div>
+<div class="fw-control">
+  <!--外掛欄位內容-->
+  <table [formGroup]="form">
+    <tr>
+      <th><span [attr.uofx-required]="editable ? true : null">評語</span></th>
+      <td colspan="3">
+        <input pInputText formControlName="comment" />
+        <uofx-form-error-tip [control]="form.controls.comment"></uofx-form-error-tip>
+      </td>
+    </tr>
+    <tr>
+      <th><span [attr.uofx-required]="editable ? true : null">檢驗數量</span></th>
+      <td colspan="3">
+        <p-inputNumber formControlName="inspQuantity"></p-inputNumber>
+        <uofx-form-error-tip [control]="form.controls.inspQuantity" rangeText="檢驗數量不可為0"></uofx-form-error-tip>
+      </td>
+    </tr>
+    <tr>
+      <th>檢驗結果</th>
+      <td colspan="3">
+        <p-dropdown [options]="inspResults" optionLabel="name" optionValue="code" styleClass="width-100" filter="true"
+          filterBy="name" formControlName="inspResult"></p-dropdown>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        <span [attr.uofx-required]="editable ? true : null">檢驗產品</span>
+      </th>
+      <td colspan="3">
+        <div class="d-flex gap">
+          <input class="flex-1" pInputText formControlName="inspProduct" readonly>
+          <uofx-button [mode]="'u-btn-primary'" (click)="showDialog()">選擇產品</uofx-button>
+          <uofx-button [mode]="'u-btn-cancel'" (click)="clearProduct()">清除</uofx-button>
+        </div>
+        <uofx-form-error-tip [control]="form.controls.inspProduct"></uofx-form-error-tip>
+      </td>
+    </tr>
+    <tr>
+      <th><span>檢驗日期</span></th>
+      <td colspan="3">
+        <uofx-date-picker formControlName="inspDate" [enableTime]="true"></uofx-date-picker>
+      </td>
+    </tr>
+    <tr>
+      <th><span>檢驗人員</span></th>
+      <td colspan="3">
+        <uofx-user-select [types]="types" [corpId]="corpId" formControlName="inspector"></uofx-user-select>
+      </td>
+    </tr>
+    <tr>
+      <th><span>檢驗報告</span></th>
+      <td colspan="3">
+        <uofx-file-upload formControlName="inspReport" [module]="'Plugin'"
+        [pluginCode]="pluginCode"></uofx-file-upload>
+      </td>
+    </tr>
+  </table>
+  <div class="fw-descr" *ngIf="showDescr && descr">
+    {{ descr }}
+  </div>
+</div>

@@ -1,0 +1,22 @@
+import { Component, OnInit, inject } from '@angular/core';
+import { ModalController } from '@ionic/angular/standalone';
+import { UofxPluginPanel } from '@uofx/plugin';
+
+/**
+ * <%= classify(name) %> App 面板元件
+ *
+ * 用於行動裝置端的功能面板
+ */
+@Component({
+  selector: 'uofx-app-<%= dasherize(name) %>-panel',
+  templateUrl: './<%= dasherize(name) %>.component.html',
+  styleUrls: ['./<%= dasherize(name) %>.component.scss'],
+  providers: [ModalController],
+})
+export class App<%= classify(name) %>PanelComponent extends UofxPluginPanel implements OnInit {
+  private modalCtrl = inject(ModalController);
+
+  ngOnInit(): void {
+    // 程式碼進入點
+  }
+}

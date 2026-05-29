@@ -1,0 +1,17 @@
+import { Component, Input } from '@angular/core';
+import { BpmFwDesignComponent } from '@uofx/web-components/form';
+import { <%= classify(name) %>PropModel } from '@model/<%= dasherize(name) %>.model';
+
+/**
+ * <%= classify(name) %> 欄位設計元件
+ *
+ * 用於表單設計器中顯示欄位的預覽
+ */
+@Component({
+  selector: 'uofx-<%= dasherize(name) %>-design',
+  templateUrl: './<%= dasherize(name) %>.design.component.html',
+  styleUrls: ['./<%= dasherize(name) %>.design.component.scss']
+})
+export class <%= classify(name) %>DesignComponent extends BpmFwDesignComponent {
+  @Input() exProps: <%= classify(name) %>PropModel;
+}
