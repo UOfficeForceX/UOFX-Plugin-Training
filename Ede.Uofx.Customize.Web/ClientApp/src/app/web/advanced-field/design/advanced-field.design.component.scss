@@ -1,0 +1,29 @@
+$border: 0.55px solid #cfd2d9;
+
+:host {
+  ::ng-deep {
+    .fw-control {
+      table {
+        border-top: $border;
+        border-left: $border;
+        border-spacing: 0;
+
+        td,
+        th {
+          padding: 4px 12px !important;
+          font-size: 1.5rem;
+          border-top: none;
+          border-left: none;
+          border-bottom: $border;
+          border-right: $border;
+        }
+
+        th {
+          background-color: #e8edf5;
+          color: #002e90;
+          text-align: right;
+        }
+      }
+    }
+  }
+}

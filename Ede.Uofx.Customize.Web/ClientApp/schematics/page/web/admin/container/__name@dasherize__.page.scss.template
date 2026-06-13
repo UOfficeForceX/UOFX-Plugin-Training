@@ -1,0 +1,5 @@
+/* <%= classify(name) %> Page Styles */
+
+.uofx-layout-content {
+  max-height: calc(100vh - 220px);
+}

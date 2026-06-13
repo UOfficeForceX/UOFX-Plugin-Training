@@ -1,0 +1,43 @@
+<div>
+  <uofx-form-field-name [name]="name" [required]="required">
+  </uofx-form-field-name>
+</div>
+<div class="fw-control">
+  <table>
+    <tr>
+      <th><span>Title1</span></th>
+      <td>
+        <span>Content1</span>
+      </td>
+      <th><span>Title2</span></th>
+      <td>
+        <span>Content2</span>
+      </td>
+    </tr>
+    <tr>
+      <th><span>Title3</span></th>
+      <td colspan="3">
+        <span>Content3</span>
+      </td>
+    </tr>
+    <tr>
+      <th><span>文字元件</span></th>
+      <td colspan="3">
+        <input pInputText/>
+      </td>
+    </tr>
+    <tr>
+      <th><span>數值元件</span></th>
+      <td colspan="3">
+        <p-inputNumber></p-inputNumber>
+      </td>
+    </tr>
+    <tr>
+      <th><span>下拉選單元件</span></th>
+      <td colspan="3">
+        <p-dropdown [options]="inspResults" optionLabel="name" optionValue="code"
+        styleClass="width-100" filter="true" filterBy="name"></p-dropdown>
+      </td>
+    </tr>
+  </table>
+</div>

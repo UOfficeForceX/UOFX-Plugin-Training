@@ -1,0 +1,18 @@
+import { Component, Input } from '@angular/core';
+import { BpmFwPrintComponent } from '@uofx/web-components/form';
+import { <%= classify(name) %>PropModel, <%= classify(name) %>FillModel } from '@model/<%= dasherize(name) %>.model';
+
+/**
+ * <%= classify(name) %> 欄位列印元件
+ *
+ * 用於表單列印時呈現欄位資料
+ */
+@Component({
+  selector: 'uofx-<%= dasherize(name) %>-print',
+  templateUrl: './<%= dasherize(name) %>.print.component.html',
+  styleUrls: ['./<%= dasherize(name) %>.print.component.scss']
+})
+export class <%= classify(name) %>PrintComponent extends BpmFwPrintComponent {
+  @Input() exProps: <%= classify(name) %>PropModel;
+  value: <%= classify(name) %>FillModel;
+}
