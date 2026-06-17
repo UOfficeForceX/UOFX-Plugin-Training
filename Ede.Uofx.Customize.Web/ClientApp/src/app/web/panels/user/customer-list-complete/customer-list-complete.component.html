@@ -1,0 +1,24 @@
+<div class="u-panel-user uofx-layout">
+  <div class="uofx-layout-header">
+    <div class="u-panel-header">
+      <span class="u-panel-title">客戶列表</span>
+    </div>
+    <div class="u-panel-action">
+      <uofx-button [mode]="'u-btn-primary'" [outlined]="true" [smallSize]="true" [routerLink]="targetLink">
+        看全部
+      </uofx-button>
+    </div>
+  </div>
+  <div class="uofx-layout-content u-panel-content">
+    <p-dataView [value]="customerList">
+      <ng-template pTemplate="list" let-items>
+        @for( item of items; track $index){
+        <div class="u-panel-list-item">
+          <div class="text-15 font-weight-600 margin-bottom-s">{{ item.companyName }}</div>
+          <div>{{ item.phone }}</div>
+        </div>
+        }
+      </ng-template>
+    </p-dataView>
+  </div>
+</div>

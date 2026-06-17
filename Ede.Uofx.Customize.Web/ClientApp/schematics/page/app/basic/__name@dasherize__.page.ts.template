@@ -1,0 +1,28 @@
+import { Component, Injector, inject } from '@angular/core';
+import { UofxConsole } from '@uofx/core';
+import { UofxPluginAuthorize, UofxPluginPage } from '@uofx/plugin';
+
+/**
+ * <%= classify(name) %> App 頁面元件
+ *
+ * 用於行動裝置的獨立頁面
+ */
+@UofxPluginAuthorize({ functionId: '<%= funcId %>' })
+@Component({
+  selector: 'uofx-app-<%= dasherize(name) %>-page',
+  templateUrl: './<%= dasherize(name) %>.page.html',
+  styleUrls: ['./<%= dasherize(name) %>.page.scss']
+})
+export class <%= classify(name) %>Page extends UofxPluginPage {
+  private injector = inject(Injector);
+
+  constructor() {
+    super();
+  }
+
+  ionViewDidEnter(): void {
+    UofxConsole.log('=== <%= classify(name) %>Page ===');
+    UofxConsole.log('pluginSetting', this.pluginSetting);
+    UofxConsole.log('baseUrl', this.baseUrl.appPlugin);
+  }
+}

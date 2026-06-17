@@ -1,0 +1,14 @@
+<!-- <%= displayName %> Admin Page -->
+<!-- 這是空白樣板，請在此開始編輯您的頁面內容 -->
+
+<div class="uofx-container">
+  <div class="row">
+    <!-- 麵包屑導覽 -->
+    <div class="padding-vertical-2x col-12">
+      <uofx-breadcrumb [items]="breadCrumbItems"></uofx-breadcrumb>
+    </div>
+  </div>
+
+  <!-- 在此新增您的頁面內容 -->
+
+</div>

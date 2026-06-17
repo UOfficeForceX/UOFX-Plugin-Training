@@ -1,0 +1,48 @@
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TranslateModule } from '@ngx-translate/core';
+import { UofxFormFieldBaseModule } from '@uofx/web-components/form';
+
+import { <%= classify(name) %>PropsComponent } from './props/<%= dasherize(name) %>.props.component';
+import { <%= classify(name) %>WriteComponent } from './write/<%= dasherize(name) %>.write.component';
+<%= designImport %>
+<%= viewImport %>
+<%= printImport %>
+
+const UOF_MODULES = [
+  UofxFormFieldBaseModule,
+];
+
+const COMPONENTS = [
+  <%= componentsArray %>
+];
+
+const BASIC_SERVICES = [];
+
+/**
+ * <%= classify(name) %> 欄位模組
+ */
+@NgModule({
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    TranslateModule.forChild(),
+    ...UOF_MODULES
+  ],
+  providers: [
+    ...BASIC_SERVICES
+  ],
+  exports: [...COMPONENTS],
+  declarations: [...COMPONENTS]
+})
+export class <%= classify(name) %>Module {
+  static comp = {
+    props: <%= classify(name) %>PropsComponent,
+    design: <%= designComponent %>,
+    write: <%= classify(name) %>WriteComponent,
+    view: <%= viewComponent %>,
+    print: <%= printComponent %>,
+  }
+}
